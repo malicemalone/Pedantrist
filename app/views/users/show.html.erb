@@ -1,0 +1,9 @@
+<h1>Posts by <%=@user%></h1>
+
+<ul>
+<%Entry.where(user_id: @user.id).each do |entry|%>
+	<li><%=entry%></li>
+	<%end%>
+</ul>
+
+
