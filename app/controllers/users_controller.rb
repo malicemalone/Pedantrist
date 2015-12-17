@@ -5,10 +5,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(username: params[:username], email: params[:email])
+    @user = User.new(username: params["user"][:username], email: params["user"][:email])
+    @user.password=(params["user"][:password_hash])
     if @user.save
-      @user.password = params[:password_hash]
-      redirect_to user_path(user)
+      redirect_to user_path(@user)
+    else
+      session[:errors] = "Email or usernamme already taken"
+      redirect_to new_user_path
     end
   end
 
@@ -32,3 +35,4 @@ class UsersController < ApplicationController
   end
 
 end
+

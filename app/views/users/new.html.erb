@@ -1,2 +1,12 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>New User Sign-up</h1>
+	<%=form_for @user do |f|%>
+	<%=f.text_field :username, :placeholder => "Username (6 chars minimum)"%>
+	<%=f.text_field :email, :placeholder => "Email"%>
+	<%=f.text_field :password_hash, :placeholder => "Password (6 chars minimum)"%>
+	<%=f.submit%>
+<%end%>
+
+<%if session[:errors]%>
+	<%=session[:errors]%>
+	<%session.delete(:errors)%>
+<%end%>
