@@ -1,0 +1,9 @@
+<h1>Login</h1>
+
+<%=form_tag(welcome_index_path, method: "post") do %>
+	<%=text_field_tag "username", nil, options = {placeholder: "Username"}%>
+	<%=text_field_tag "password_hash", nil, options = {placeholder: "Password"}%>
+<%=submit_tag("Submit")%>
+<%end%>
+
+

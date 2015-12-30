@@ -1,3 +1,10 @@
 <h1> Welcome to Pedantrist!</h1>
 
-<%=link_to "Sign up", new_user_path%>
+<%if !!session[:user_id]%>
+	<%=link_to "Logout", users_path(@user)%>
+	<%=link_to "Settings", edit_user_path(@user)%>
+<%else%>
+	<%=link_to "Login", new_welcome_path%> OR
+	<%=link_to "Sign up", new_user_path%>
+<%end%>
+

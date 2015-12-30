@@ -1,2 +1,30 @@
-<h1>Users#edit</h1>
-<p></p>
+<h1>Change Account information</h1>
+
+
+<h3> Change your username </h3>
+	<%=form_for @user do |f|%>
+		<%=f.text_field :username, :placeholder => "New username"%>
+		<%=f.submit "Submit"%>
+	<%end%>
+	<%if session[:succ_username]%>
+		<%=p session[:succ_username]%>
+		<%session.delete(:succ_username)%>
+	<%else%>
+		<%=p session[:errors]%>
+	<%end%>
+	
+<h3>OR</h3>
+<br>
+<h3> Change your password </h3>
+	<%=form_for @user do |f|%>
+		<%=f.text_field :password_hash, :placeholder => "New password"%>
+		<%=f.submit "Submit"%>
+	<%end%>
+	<%if session[:succ_pass]%>
+		<%=p session[:succ_pass]%>
+		<%session.delete(:succ_pass)%>
+	<%else%>
+		<%=p session[:errors]%>
+	<%end%>
+
+<%session.delete(:errors)%>
