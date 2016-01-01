@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 	validates :username, presence: true,  uniqueness: true, length: {minimum: 5}
 
 
-		def password
+	def password
     	@password ||= Password.new(password_hash)
   	end
 
