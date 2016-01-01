@@ -6,4 +6,8 @@
 <%=submit_tag("Submit")%>
 <%end%>
 
+<%if session[:errors]%>
+<%=p session[:errors]%><%=link_to "Here!", new_user_path%>
+<%session.delete(:errors)%>
+<%end%>
 
