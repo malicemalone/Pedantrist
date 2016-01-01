@@ -1,4 +1,4 @@
-<%= button_to "Logout", {:controller => 'users', :action => 'destroy', :id => session[:user_id]}, {:method => :delete}%>
+<%= link_to "Logout", {:controller => 'users', :action => 'destroy', :id => session[:user_id]}, {:method => :delete}%>
 
 <h1> Profile for <%=@user.username%></h1>
 
@@ -7,6 +7,4 @@
 	<li><%=entry.title%></li>
 	<li><%=entry.description%></li>
 <%end%>
-
-
 </ul>

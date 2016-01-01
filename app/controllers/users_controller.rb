@@ -10,18 +10,24 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(username: params["user"][:username], email: params["user"][:email])
-    @user.password=(params["user"][:password_hash])
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to users_path
-    else
-      session[:errors] = "Email or username already taken"
+
+    if params["user"][:password_hash].length >= 6 && @user.username.length >= 6
+      @user.password=(params["user"][:password_hash])
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to users_path
+      else
+        session[:errors] = "Requires a unique username and email."
+        redirect_to new_user_path
+      end
+    else 
+      session[:errors] = "All fields required. Usernames and Password must have at least 6 characters"
       redirect_to new_user_path
     end
   end
 
   def show
-    @user = User.find_by(params[:username])
+    @user = User.find_by(username: params["username"])
   end
 
   def edit
@@ -49,11 +55,9 @@ class UsersController < ApplicationController
       end
         redirect_to edit_user_path(@user)
     end
-
   end
 
   def destroy
-    p "GOT HERE"
     session.delete(:user_id)
     redirect_to welcome_index_path
   end

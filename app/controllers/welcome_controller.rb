@@ -8,14 +8,15 @@ class WelcomeController < ApplicationController
 		@user = User.new
 	end
 
+	#makes use of welcome controller to log in instead of making new sessions controller
 	def create
-		puts params
-		puts params["user"][:username]
-		@user = User.find_by(username: params["user"][:username])
-		if !!@user && @user.password == @user.password_hash
-			redirect_to welcome_path
+		@user = User.find_by(username: params["username"])
+		if @user && @user.password == params["password_hash"]
+			session[:user_id] = @user.id
+			redirect_to users_path
 		else
-			redirect_to welcome_path
+			session[:errors] = "User not found. Sign up "
+			render new_welcome_path
 		end
 	end
 end

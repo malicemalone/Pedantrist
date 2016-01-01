@@ -1,8 +1,20 @@
+<%if session[:user_id]%>
+	<%= link_to "Logout", {:controller => 'users', :action => 'destroy', :id => session[:user_id]}, {:method => :delete}%>
+<%end%>
+
 <h1> Welcome to Pedantrist!</h1>
 
 <%if !!session[:user_id]%>
-	<%=link_to "Logout", users_path(@user)%>
+	<%=link_to "Profile", users_path(@user)%>
 	<%=link_to "Settings", edit_user_path(@user)%>
+	<p>Look up a user: </p>
+	<%=form_tag("/users/show", method: "get") do %>
+      <td>
+          <%=text_field_tag "username", nil, options = {style:"height:3.05em; min-width: 15em; margin-left: .50em; margin-right: 0.50em; position: relative",  placeholder: "Username"} %>
+      </td>
+      <td>
+          <%= submit_tag("Search")%>
+      <%end%>
 <%else%>
 	<%=link_to "Login", new_welcome_path%> OR
 	<%=link_to "Sign up", new_user_path%>
