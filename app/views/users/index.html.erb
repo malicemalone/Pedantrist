@@ -2,9 +2,9 @@
 
 <h1> Profile for <%=@user.username%></h1>
 
-<ul>
 <%=Entry.where(user_id: session[:user_id]).each do |entry|%>
+<ul>
 	<li><%=entry.title%></li>
 	<li><%=entry.description%></li>
-<%end%>
 </ul>
+<%end%>
