@@ -15,10 +15,10 @@ $(window).scroll(function (event) {
             $('.a').removeClass('state-up');
             $('.a').addClass('state-partially')
         }
-    } else {
-        $('.a').removeClass('state-up');
-        $('.a').removeClass('state-partially');
-        $('.a').addClass('state-down')
-    }
+        } else {
+            $('.a').removeClass('state-up');
+            $('.a').removeClass('state-partially');
+            $('.a').addClass('state-down')
+        }
     lastScrollTop = st;
 });

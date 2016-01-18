@@ -4,20 +4,40 @@
 
 body {
     height: 2000px;
+    @media screen {
+	    margin-left: 0%;
+	    margin-top: 0%;
+	}
 }
+
 .a {
-    height: 300px;
-    width: 300px;
+    height: 80px;
+    width: 100%;
     display: block;
     background-color: green;
     position: fixed;
+	#header-top {
+		@media screen {
+			position: fixed;
+			margin-top: 0px;
+		}
+	}
+	#header-bottom {
+		@media screen {
+			position: fixed;
+			margin-top: 30px;
+		}
+	}
 }
+
 .state-down {
     top: 0px;
 }
 .state-partially {
-    top: -150px;
+    top: -40px;
 }
+
 .state-up {
-    top: -300px;
+    top: -80px;
 }
+
