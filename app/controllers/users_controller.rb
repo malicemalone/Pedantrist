@@ -59,7 +59,11 @@ class UsersController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    redirect_to welcome_index_path
+    if request.xhr?
+      render 'welcome/index'
+    else
+      redirect_to welcome_index_path
+    end
   end
 
 end

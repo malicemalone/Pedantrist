@@ -1,13 +1,9 @@
-<%if session[:user_id]%>
-<%end%>
-
-
 <div class="a">
     <h1 id="header-top">Pedantrist</h1>
     <table id="header-bottom">
 		<tr>
 		<%if !!session[:user_id]%>
-			<td><%= link_to "Logout", {:controller => 'users', :action => 'destroy', :id => session[:user_id]}, {:method => :delete}%></td>
+			<td><%= link_to "Logout", {:controller => 'users', :action => "destroy", :id => "logout"}, {:method => :delete}%></td>
 			<td><%=link_to "Profile", users_path(@user)%></td>
 			<td><%=link_to "Settings", edit_user_path(@user)%></td>
 			<td><p>Look up a user: </p></td>
@@ -16,7 +12,6 @@
 		        <%=text_field_tag "username", nil, options = {style:"height:3.05em; min-width: 15em; margin-left: .50em; margin-right: 0.50em; position: relative",  placeholder: "Username"} %> </td>
 		      <td> <%= submit_tag("Search")%></td>
 		      <%end%>
-
 		<%else%>
 			<td><%=link_to "Login", new_welcome_path%> OR
 			<%=link_to "Sign up", new_user_path%></td>

@@ -2,6 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin keyframe($name) {
+	-webkit-animation: $name 1s;
+    animation-timing-function: ease;
+	animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes mypartial {
+    from {top: -40px;}
+    to {top: 0px;}
+}
+
+@keyframes mypartial {
+    from {top: -40px;}
+    to {top: 0px;}
+}
+
+@-webkit-keyframes myfull {
+	from {top: -40px;}
+	to {top: -0px;}
+}
+
+@keyframes myfull {
+	from {top: -40px;}
+	to {top: -0px;}
+}
+
+@-webkit-keyframes disappear {
+	from {top: 0px;}
+	to {top: -84px;}
+}
+
+@keyframes disappear {
+	from {top: 0px;}
+	to {top: -84px;}
+}
+
+
+@mixin mediaheader($num_px) {
+	@media screen {
+		width: 100%;
+		margin-top: $num_px;
+	}
+
+}
+
 body {
     height: 2000px;
     @media screen {
@@ -14,30 +59,31 @@ body {
     height: 80px;
     width: 100%;
     display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: green;
     position: fixed;
-	#header-top {
-		@media screen {
-			position: fixed;
-			margin-top: 0px;
-		}
+    #header-top {
+		position: fixed;
+		margin-top:5px;
 	}
 	#header-bottom {
-		@media screen {
-			position: fixed;
-			margin-top: 30px;
-		}
+		position: fixed;
+		margin-top: 35px;
 	}
 }
 
 .state-down {
-    top: 0px;
+    @include mediaheader(0px);
+    @include keyframe(myfull)
 }
+
 .state-partially {
-    top: -40px;
+    @include mediaheader(-40px);
+  	@include keyframe(mypartial)
 }
 
 .state-up {
-    top: -80px;
+    @include mediaheader(0px);
+    @include keyframe(disappear);
 }
 
