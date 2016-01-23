@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @mixin keyframe($name) {
-	-webkit-animation: $name 1s;
+	-webkit-animation: $name 0.1s;
     animation-timing-function: ease;
 	animation-fill-mode: forwards;
 }

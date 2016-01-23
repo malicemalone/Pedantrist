@@ -1,7 +1,7 @@
 $(function() {
 	$("body").on("click", "#logout", function(e){
 		e.preventDefault();
-		console.log("hello");
+		// console.log("hello");
 		console.log("Logout button was clicked");
 		$.ajax({
 			url: $(this).attr("href"),
